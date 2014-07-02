@@ -38,7 +38,7 @@ class RussianRouletteActor extends Actor with ActorLogging {
       gunActor ! Click(numberOfTrials)
   }
 
-  override val supervisorStrategy = OneForOneStrategy() {
+  override val supervisorStrategy = OneForOneStrategy(loggingEnabled = false) {
     case _: DiedException =>
       // If gun actor fails with DiedException restart the gun actor
       log.info("Bang!")
